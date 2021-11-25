@@ -1,7 +1,7 @@
 import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
 
 @Entity()
-export default class Unidade {
+export default class Colaborador {
     @PrimaryGeneratedColumn('increment')
     id: number
 
@@ -9,20 +9,14 @@ export default class Unidade {
     nome: string
 
     @Column()
-    tipo_logradouro: string
+    cpf: string
 
     @Column()
-    logradouro: string
+    telefone: string
 
     @Column()
-    numero: number
+    email: number
 
     @Column()
-    bairro: string
-
-    @Column()
-    cidade: string
-
-    @Column()
-    uf: string
+    status: string
 }
