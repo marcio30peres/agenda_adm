@@ -39,12 +39,12 @@ agendamentoRouter.get('/find/:id', async (request, response) => {
 
 agendamentoRouter.get('/clbd/:id', async (request, response) => {
     try {
-        const repo = getRepository(Colaborador)
-        const res = await repo.findOne(request.params.id)
-        const repo_agdm = getRepository(Agendamento)
-        const agdms = await repo_agdm.find({
+        const repo = getRepository(Agendamento)
+        const agdms = await repo.find({
             where: {
-                colaborador: res
+                colaborador: {
+                    id: request.params.id
+                }
             },
             relations: ["colaborador", "unidade"]
         })
@@ -57,7 +57,7 @@ agendamentoRouter.get('/clbd/:id', async (request, response) => {
 agendamentoRouter.put('/update/:id', async (request, response) => {
     try {
         const repo = getRepository(Agendamento)
-        const undd = await repo.findOne(request.params.id)
+        const undd = await repo.findOne(request.params.id, {relations: ["colaborador", "unidade"]})
         repo.merge(undd, request.body)
         repo.save(undd)
         return response.status(200).json(undd)
