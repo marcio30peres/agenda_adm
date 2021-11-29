@@ -1,4 +1,5 @@
-import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
+import Agendamento from "./Agendamento";
 
 @Entity()
 export default class Unidade {
@@ -25,4 +26,7 @@ export default class Unidade {
 
     @Column()
     uf: string
+
+    @OneToMany(type => Agendamento, agendamentos => agendamentos.colaborador)
+    agendamentos: Agendamento[]
 }

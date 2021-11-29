@@ -51,7 +51,7 @@ colaboradorRouter.delete('/delete/:id', async (request, response) => {
         const repo = getRepository(Colaborador)
         repo.delete(request.params.id)
         return response.status(200).json({
-            msg: `Colaborador id: ${request.params.id} excluída.`
+            msg: `Colaborador id: ${request.params.id} excluído.`
         })
     } catch (err) {
         return response.status(400).json({msg: err.message})
